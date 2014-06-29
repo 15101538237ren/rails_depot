@@ -13,6 +13,9 @@ class Product < ActiveRecord::Base
 	def  self.find_products_for_sale
 		Product.all.order('title asc')
 	end
+	def self.latest
+		Product.order(:updated_at).last
+	end
 protected
 	def price_must_be_at_least_a_cent
 		errors.add(:price ,'must be greater than or equal to 0.01')  if price.nil? ||

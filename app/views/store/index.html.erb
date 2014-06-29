@@ -1,5 +1,10 @@
+<% if notice %>
+<p id="notice"><%= notice %></p>
+<% end %>
 <h1>Your Pragmatic Catlog</h1>
+<% cache ['store', Product.latest] do %>
 <% for product in @products -%>
+	<% cache ['entry', product] do %>
 	<div class="entry">
 		<%= image_tag(product.image_url) %>
 		<h3><%= product.title%></h3>
@@ -11,4 +16,6 @@
 			</span>
 		</div>
 	</div>
+	<% end %>
+<% end %>
 <% end %>
