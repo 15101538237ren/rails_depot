@@ -9,6 +9,13 @@
         font: bold smaller sans-serif;
 }
 
+#store .item_price, .total_line {
+  text-align: right;
+  }
+  #store .total_line .total_cell {
+  font-weight: bold;
+  border-top: 1px solid #595;
+}
 
 #store h1 {
         font:  150% sans-serif;
