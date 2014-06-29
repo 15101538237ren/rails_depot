@@ -1,4 +1,6 @@
 class Product < ActiveRecord::Base
+	has_many :line_items
+	before_destroy :ensure_not_referenced_by_any_line_item
 	validates_presence_of :title,:description,:image_url
 	validates_length_of :title,
 			:minimum => 10,
@@ -20,5 +22,14 @@ protected
 	def price_must_be_at_least_a_cent
 		errors.add(:price ,'must be greater than or equal to 0.01')  if price.nil? ||
 		price < 0.01
+	end
+	# ensure that there are no line items referencing this product
+	def ensure_not_referenced_by_any_line_item
+	if line_items.empty?
+	return true
+	else
+	errors.add(:base, 'Line Items present')
+	return false
+	end
 	end
 end

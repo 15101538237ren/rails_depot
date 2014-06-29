@@ -1,7 +1,6 @@
 class LineItem < ActiveRecord::Base
   belongs_to :product
   belongs_to :cart
-private
   def total_price
     product.price * quantity
   end
